@@ -97,3 +97,11 @@ jobs:
       uses: github/codeql-action/analyze@v4
       with:
         category: "/language:${{matrix.language}}"
+
+    - name: Upload SARIF Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: sarif-results
+        # CodeQL usually stores results in a 'results' directory by default
+        path: ${{ github.workspace }}/../results/*.sarif
+        retention-days: 1
